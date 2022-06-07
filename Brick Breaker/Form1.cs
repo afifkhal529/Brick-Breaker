@@ -12,7 +12,7 @@ namespace Brick_Breaker
 {
     public partial class Form1 : Form
     {
-        Rectangle hero = new Rectangle(280, 450, 60, 8);
+        Rectangle hero = new Rectangle(280, 450, 80, 8);
         Rectangle ball = new Rectangle(280, 300, 10, 10);
 
         int herospeed = 15;
@@ -41,10 +41,11 @@ namespace Brick_Breaker
         SolidBrush greenBrush = new SolidBrush(Color.DarkSeaGreen);
         SolidBrush blueBrush = new SolidBrush(Color.MediumTurquoise);
         SolidBrush purpleBrush = new SolidBrush(Color.Thistle);
+        SolidBrush pinkBrush = new SolidBrush(Color.PaleVioletRed);
         public Form1()
         {
             InitializeComponent();
-
+            
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -94,7 +95,7 @@ namespace Brick_Breaker
             //move ball 
             ball.X += ballXspeed;
             ball.Y += ballYspeed;
-
+            
             //move hero
             if (leftKey == true && hero.X > 0)
             {
@@ -151,10 +152,7 @@ namespace Brick_Breaker
                     brickRow1.RemoveAt(i);
                     ballXspeed *= -1;
 
-                    ball.X = 280;
-                    ball.Y = 300;
-
-                    hero.Y = 450;
+                    //hero.Y = 450;
                 }
 
             }
@@ -168,10 +166,7 @@ namespace Brick_Breaker
                     brickRow2.RemoveAt(i);
                     ballXspeed *= -1;
 
-                    ball.X = 280;
-                    ball.Y = 300;
-
-                    hero.Y = 450;
+                    //hero.Y = 450;
                 }
             }
             for (int i = 0; i < brickRow3.Count(); i++)
@@ -184,10 +179,7 @@ namespace Brick_Breaker
                     brickRow3.RemoveAt(i);
                     ballXspeed *= -1;
 
-                    ball.X = 280;
-                    ball.Y = 300;
-
-                    hero.Y = 450;
+                    //hero.Y = 450;
                 }
             }
             for (int i = 0; i < brickRow4.Count(); i++)
@@ -200,10 +192,7 @@ namespace Brick_Breaker
                     brickRow4.RemoveAt(i);
                     ballXspeed *= -1;
 
-                    ball.X = 280;
-                    ball.Y = 300;
-
-                    hero.Y = 450;
+                    //hero.Y = 450;
                 }
             }
             for (int i = 0; i < brickRow5.Count(); i++)
@@ -216,10 +205,7 @@ namespace Brick_Breaker
                     brickRow5.RemoveAt(i);
                     ballXspeed *= -1;
 
-                    ball.X = 280;
-                    ball.Y = 300;
-
-                    hero.Y = 450;
+                    //hero.Y = 450;
                 }
             }
             for (int i = 0; i < brickRow6.Count(); i++)
@@ -232,11 +218,15 @@ namespace Brick_Breaker
                     brickRow6.RemoveAt(i);
                     ballXspeed *= -1;
 
-                    ball.X = 280;
-                    ball.Y = 300;
-
-                    hero.Y = 450;
+                    //hero.Y = 450;
                 }
+            }
+
+            //Determine when the game is over
+            if (score == 21)
+            {
+                gameTimer.Enabled = false;
+                gameState = "over";
             }
             Refresh();
         }
@@ -285,7 +275,7 @@ namespace Brick_Breaker
             brickRow6.Add(new Rectangle(330, 170, 30, 10));
             brickRow6.Add(new Rectangle(370, 170, 30, 10));
 
-            hero.Y = this.Height - hero.Height - 50;
+            hero.Y = this.Height - hero.Height - 150;
             hero.X = this.Width - hero.Width - 280;
 
         }
@@ -295,7 +285,7 @@ namespace Brick_Breaker
             if (gameState == "waiting")
             {
                 titleLabel.Text = "BRICK BREAKER";
-                subtitleLabel.Text = "Press Space Bar to Start or Escape to Exit";
+                subtitleLabel.Text = "PRESS SPACE BAR TO START OR ESC TO EXIT";
             }
             else if (gameState == "running")
             {
@@ -335,12 +325,12 @@ namespace Brick_Breaker
 
             else if (gameState == "over")
             {
-                scoreLabel.Text = $"Score: {score}";
+                scoreLabel.Text = "";
 
                 titleLabel.Text = "GAME OVER";
-                subtitleLabel.Text = $"Your final score was {score}";
+                subtitleLabel.Text = $"\nYOUR FINAL SCORE WAS {score}";
 
-                subtitleLabel.Text += "\nPress Space Bar to Start or Escape to Exit";
+                subtitleLabel.Text += "\nPRESS SPACE BAR TO START OR ESC TO EXIT";
 
             }
 

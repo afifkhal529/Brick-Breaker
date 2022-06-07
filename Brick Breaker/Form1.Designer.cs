@@ -64,7 +64,8 @@
             // titleLabel
             // 
             this.titleLabel.BackColor = System.Drawing.Color.Transparent;
-            this.titleLabel.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.ForeColor = System.Drawing.Color.Aqua;
             this.titleLabel.Location = new System.Drawing.Point(147, 212);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(238, 19);
@@ -75,13 +76,13 @@
             // subtitleLabel
             // 
             this.subtitleLabel.BackColor = System.Drawing.Color.Transparent;
-            this.subtitleLabel.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.subtitleLabel.Font = new System.Drawing.Font("Consolas", 11F, System.Drawing.FontStyle.Bold);
+            this.subtitleLabel.ForeColor = System.Drawing.Color.DarkMagenta;
             this.subtitleLabel.Location = new System.Drawing.Point(92, 240);
             this.subtitleLabel.Name = "subtitleLabel";
-            this.subtitleLabel.Size = new System.Drawing.Size(345, 19);
+            this.subtitleLabel.Size = new System.Drawing.Size(345, 48);
             this.subtitleLabel.TabIndex = 3;
-            this.subtitleLabel.Text = "subtitle";
-            this.subtitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.subtitleLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // Form1
             // 

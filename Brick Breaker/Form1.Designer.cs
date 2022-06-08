@@ -80,7 +80,7 @@
             this.subtitleLabel.ForeColor = System.Drawing.Color.DarkMagenta;
             this.subtitleLabel.Location = new System.Drawing.Point(92, 240);
             this.subtitleLabel.Name = "subtitleLabel";
-            this.subtitleLabel.Size = new System.Drawing.Size(345, 48);
+            this.subtitleLabel.Size = new System.Drawing.Size(345, 61);
             this.subtitleLabel.TabIndex = 3;
             this.subtitleLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 

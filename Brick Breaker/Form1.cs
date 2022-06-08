@@ -25,6 +25,7 @@ namespace Brick_Breaker
         List<Rectangle> brickRow4 = new List<Rectangle>();
         List<Rectangle> brickRow5 = new List<Rectangle>();
         List<Rectangle> brickRow6 = new List<Rectangle>();
+        List<Rectangle> movingBrick = new List<Rectangle>();
 
         int score = 0;
         int time = 0;
@@ -45,7 +46,7 @@ namespace Brick_Breaker
         public Form1()
         {
             InitializeComponent();
-            
+            movingBrick.Add(new Rectangle(0, 350, 30, 10));
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -107,6 +108,13 @@ namespace Brick_Breaker
                 hero.X += herospeed;
             }
 
+            // move  brick across
+            for (int i = 0; i < movingBrick.Count; i++)
+            {
+                int x = movingBrick[i].X + 6;
+                movingBrick[i] = new Rectangle(x, movingBrick[i].Y, movingBrick[i].Width, movingBrick[i].Height);
+            }
+
             //ball intersection with side walls 
             if (ball.X > this.Width || ball.X < 0)
             {
@@ -130,6 +138,21 @@ namespace Brick_Breaker
                 ballYspeed *= -1;
                 ball.Y = hero.Y - ball.Height;
             }
+
+            //if moving brick hits side walls
+            //if (movingBrick.Count > this.Width)
+            //{
+            //    movingBrick = -1;
+            //}
+
+            //add new bricks
+            //time++;
+
+            //if (time > 16)
+            //{
+            //    movingBrick.Add(new Rectangle(0, 350, 30, 10));
+            //    time = 0;
+            //}
 
             //check if player missed ball  
             if (ball.Y > this.Height)
@@ -216,6 +239,19 @@ namespace Brick_Breaker
                     scoreLabel.Text = $"{score}";
 
                     brickRow6.RemoveAt(i);
+                    ballXspeed *= -1;
+
+                    //hero.Y = 450;
+                }
+            }
+            for (int i = 0; i < movingBrick.Count(); i++)
+            {
+                if (ball.IntersectsWith(movingBrick[i]))
+                {
+                    score++;
+                    scoreLabel.Text = $"{score}";
+
+                    movingBrick.RemoveAt(i);
                     ballXspeed *= -1;
 
                     //hero.Y = 450;
@@ -321,6 +357,10 @@ namespace Brick_Breaker
                 {
                     e.Graphics.FillRectangle(purpleBrush, brickRow6[i]);
                 }
+                for (int i = 0; i < movingBrick.Count(); i++)
+                {
+                    e.Graphics.FillRectangle(pinkBrush, movingBrick[i]);
+                }
             }
 
             else if (gameState == "over")
@@ -329,7 +369,6 @@ namespace Brick_Breaker
 
                 titleLabel.Text = "GAME OVER";
                 subtitleLabel.Text = $"\nYOUR FINAL SCORE WAS {score}";
-
                 subtitleLabel.Text += "\nPRESS SPACE BAR TO START OR ESC TO EXIT";
 
             }

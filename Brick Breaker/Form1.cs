@@ -14,10 +14,12 @@ namespace Brick_Breaker
     {
         Rectangle hero = new Rectangle(280, 450, 80, 8);
         Rectangle ball = new Rectangle(280, 300, 10, 10);
+        Rectangle movingBrick = new Rectangle(0, 350, 30, 10);
 
         int herospeed = 15;
         int ballXspeed = 0;
         int ballYspeed = 8;
+        int brickXspeed = 5;
 
         List<Rectangle> brickRow1 = new List<Rectangle>();
         List<Rectangle> brickRow2 = new List<Rectangle>();
@@ -25,7 +27,6 @@ namespace Brick_Breaker
         List<Rectangle> brickRow4 = new List<Rectangle>();
         List<Rectangle> brickRow5 = new List<Rectangle>();
         List<Rectangle> brickRow6 = new List<Rectangle>();
-        List<Rectangle> movingBrick = new List<Rectangle>();
 
         int score = 0;
         int time = 0;
@@ -46,7 +47,7 @@ namespace Brick_Breaker
         public Form1()
         {
             InitializeComponent();
-            movingBrick.Add(new Rectangle(0, 350, 30, 10));
+
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -109,10 +110,12 @@ namespace Brick_Breaker
             }
 
             // move  brick across
-            for (int i = 0; i < movingBrick.Count; i++)
+            movingBrick.X += brickXspeed;
+
+            //brick intersection with side walls
+            if (movingBrick.X > this.Width || movingBrick.X < 0)
             {
-                int x = movingBrick[i].X + 6;
-                movingBrick[i] = new Rectangle(x, movingBrick[i].Y, movingBrick[i].Width, movingBrick[i].Height);
+                brickXspeed *= -1;
             }
 
             //ball intersection with side walls 
@@ -139,21 +142,6 @@ namespace Brick_Breaker
                 ball.Y = hero.Y - ball.Height;
             }
 
-            //if moving brick hits side walls
-            //if (movingBrick.Count > this.Width)
-            //{
-            //    movingBrick = -1;
-            //}
-
-            //add new bricks
-            //time++;
-
-            //if (time > 16)
-            //{
-            //    movingBrick.Add(new Rectangle(0, 350, 30, 10));
-            //    time = 0;
-            //}
-
             //check if player missed ball  
             if (ball.Y > this.Height)
             {
@@ -165,6 +153,15 @@ namespace Brick_Breaker
             }
 
             //check for point scored
+            if (ball.IntersectsWith(movingBrick))
+            {
+                score++;
+                scoreLabel.Text = $"{score}";
+
+                movingBrick.X = -50;
+                movingBrick.Y = -50;    
+                ballXspeed = -1;
+            }
             for (int i = 0; i < brickRow1.Count(); i++)
             {
                 if (ball.IntersectsWith(brickRow1[i]))
@@ -175,9 +172,8 @@ namespace Brick_Breaker
                     brickRow1.RemoveAt(i);
                     ballXspeed *= -1;
 
-                    //hero.Y = 450;
+                    //hero.Y = 450;  
                 }
-
             }
             for (int i = 0; i < brickRow2.Count(); i++)
             {
@@ -244,19 +240,7 @@ namespace Brick_Breaker
                     //hero.Y = 450;
                 }
             }
-            for (int i = 0; i < movingBrick.Count(); i++)
-            {
-                if (ball.IntersectsWith(movingBrick[i]))
-                {
-                    score++;
-                    scoreLabel.Text = $"{score}";
-
-                    movingBrick.RemoveAt(i);
-                    ballXspeed *= -1;
-
-                    //hero.Y = 450;
-                }
-            }
+            
 
             //Determine when the game is over
             if (score == 21)
@@ -332,6 +316,9 @@ namespace Brick_Breaker
                 //draw ball
                 e.Graphics.FillRectangle(whiteBrush, ball);
 
+                //draw moving brick
+                e.Graphics.FillRectangle(pinkBrush, movingBrick);
+
                 //paint bricks
                 for (int i = 0; i < brickRow1.Count(); i++)
                 {
@@ -357,10 +344,7 @@ namespace Brick_Breaker
                 {
                     e.Graphics.FillRectangle(purpleBrush, brickRow6[i]);
                 }
-                for (int i = 0; i < movingBrick.Count(); i++)
-                {
-                    e.Graphics.FillRectangle(pinkBrush, movingBrick[i]);
-                }
+                
             }
 
             else if (gameState == "over")

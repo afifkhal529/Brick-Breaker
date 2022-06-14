@@ -31,10 +31,12 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
-            this.timeLabel = new System.Windows.Forms.Label();
+            this.livesLabel = new System.Windows.Forms.Label();
             this.scoreLabel = new System.Windows.Forms.Label();
             this.titleLabel = new System.Windows.Forms.Label();
             this.subtitleLabel = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // gameTimer
@@ -42,14 +44,16 @@
             this.gameTimer.Interval = 20;
             this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
             // 
-            // timeLabel
+            // livesLabel
             // 
-            this.timeLabel.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timeLabel.Location = new System.Drawing.Point(0, 9);
-            this.timeLabel.Name = "timeLabel";
-            this.timeLabel.Size = new System.Drawing.Size(64, 19);
-            this.timeLabel.TabIndex = 0;
-            this.timeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.livesLabel.BackColor = System.Drawing.Color.Transparent;
+            this.livesLabel.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.livesLabel.ForeColor = System.Drawing.Color.Pink;
+            this.livesLabel.Location = new System.Drawing.Point(32, 530);
+            this.livesLabel.Name = "livesLabel";
+            this.livesLabel.Size = new System.Drawing.Size(39, 31);
+            this.livesLabel.TabIndex = 0;
+            this.livesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // scoreLabel
             // 
@@ -84,16 +88,28 @@
             this.subtitleLabel.TabIndex = 3;
             this.subtitleLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::Brick_Breaker.Properties.Resources.heart;
+            this.pictureBox1.Location = new System.Drawing.Point(-2, 517);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(40, 50);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(584, 561);
+            this.Controls.Add(this.livesLabel);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.subtitleLabel);
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.scoreLabel);
-            this.Controls.Add(this.timeLabel);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.Black;
@@ -103,6 +119,7 @@
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -110,10 +127,11 @@
         #endregion
 
         private System.Windows.Forms.Timer gameTimer;
-        private System.Windows.Forms.Label timeLabel;
+        private System.Windows.Forms.Label livesLabel;
         private System.Windows.Forms.Label scoreLabel;
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Label subtitleLabel;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

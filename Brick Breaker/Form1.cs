@@ -28,6 +28,7 @@ namespace Brick_Breaker
         List<Rectangle> brickRow5 = new List<Rectangle>();
         List<Rectangle> brickRow6 = new List<Rectangle>();
 
+        int lives = 3;
         int score = 0;
         int time = 0;
 
@@ -150,12 +151,15 @@ namespace Brick_Breaker
 
                 hero.X = 280;
                 hero.Y = 450;
+
+                lives -= 1;
+                livesLabel.Text = $"x{lives}";
             }
 
             //check for point scored
             if (ball.IntersectsWith(movingBrick))
             {
-                score++;
+                score += 2;
                 scoreLabel.Text = $"{score}";
 
                 movingBrick.X = -50;
@@ -240,12 +244,12 @@ namespace Brick_Breaker
                     //hero.Y = 450;
                 }
             }
-            
 
             //Determine when the game is over
-            if (score == 21)
+            if (score == 23 || lives == 0)
             {
                 gameTimer.Enabled = false;
+                pictureBox1.Visible = false;
                 gameState = "over";
             }
             Refresh();
@@ -261,6 +265,11 @@ namespace Brick_Breaker
 
             gameTimer.Enabled = true;
             gameState = "running";
+            
+            pictureBox1.Visible = true;
+
+            lives = 3;
+            livesLabel.Text = $"x3";
 
             brickRow1.Clear();
             brickRow1.Add(new Rectangle(270, 270, 30, 10));
@@ -295,6 +304,12 @@ namespace Brick_Breaker
             brickRow6.Add(new Rectangle(330, 170, 30, 10));
             brickRow6.Add(new Rectangle(370, 170, 30, 10));
 
+            movingBrick.X = 0;
+            movingBrick.Y = 350;
+
+            ball.X = 280;
+            ball.Y = 300;
+
             hero.Y = this.Height - hero.Height - 150;
             hero.X = this.Width - hero.Width - 280;
 
@@ -306,10 +321,11 @@ namespace Brick_Breaker
             {
                 titleLabel.Text = "BRICK BREAKER";
                 subtitleLabel.Text = "PRESS SPACE BAR TO START OR ESC TO EXIT";
+                pictureBox1.Visible = false;
+                livesLabel.Text = $"";
             }
             else if (gameState == "running")
             {
-
                 //draw hero 
                 e.Graphics.FillRectangle(whiteBrush, hero);
 
@@ -354,7 +370,7 @@ namespace Brick_Breaker
                 titleLabel.Text = "GAME OVER";
                 subtitleLabel.Text = $"\nYOUR FINAL SCORE WAS {score}";
                 subtitleLabel.Text += "\nPRESS SPACE BAR TO START OR ESC TO EXIT";
-
+                livesLabel.Text = "";
             }
 
         }

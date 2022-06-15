@@ -174,7 +174,7 @@ namespace Brick_Breaker
                     scoreLabel.Text = $"{score}";
 
                     brickRow1.RemoveAt(i);
-                    ballXspeed *= -1;
+                    ballYspeed *= -1;
 
                     //hero.Y = 450;  
                 }
@@ -187,7 +187,7 @@ namespace Brick_Breaker
                     scoreLabel.Text = $"{score}";
 
                     brickRow2.RemoveAt(i);
-                    ballXspeed *= -1;
+                    ballYspeed *= -1;
 
                     //hero.Y = 450;
                 }
@@ -200,7 +200,7 @@ namespace Brick_Breaker
                     scoreLabel.Text = $"{score}";
 
                     brickRow3.RemoveAt(i);
-                    ballXspeed *= -1;
+                    ballYspeed *= -1;
 
                     //hero.Y = 450;
                 }
@@ -213,7 +213,7 @@ namespace Brick_Breaker
                     scoreLabel.Text = $"{score}";
 
                     brickRow4.RemoveAt(i);
-                    ballXspeed *= -1;
+                    ballYspeed *= -1;
 
                     //hero.Y = 450;
                 }
@@ -226,7 +226,7 @@ namespace Brick_Breaker
                     scoreLabel.Text = $"{score}";
 
                     brickRow5.RemoveAt(i);
-                    ballXspeed *= -1;
+                    ballYspeed *= -1;
 
                     //hero.Y = 450;
                 }
@@ -239,7 +239,7 @@ namespace Brick_Breaker
                     scoreLabel.Text = $"{score}";
 
                     brickRow6.RemoveAt(i);
-                    ballXspeed *= -1;
+                    ballYspeed *= -1;
 
                     //hero.Y = 450;
                 }

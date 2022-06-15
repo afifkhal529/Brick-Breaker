@@ -159,12 +159,13 @@ namespace Brick_Breaker
             //check for point scored
             if (ball.IntersectsWith(movingBrick))
             {
-                score += 2;
+                score += 3;
                 scoreLabel.Text = $"{score}";
 
                 movingBrick.X = -50;
                 movingBrick.Y = -50;    
-                ballXspeed = -1;
+                //ballXspeed = -1;
+                ballYspeed *= -1;
             }
             for (int i = 0; i < brickRow1.Count(); i++)
             {
@@ -246,7 +247,7 @@ namespace Brick_Breaker
             }
 
             //Determine when the game is over
-            if (score == 23 || lives == 0)
+            if (score == 24 || lives == 0)
             {
                 gameTimer.Enabled = false;
                 pictureBox1.Visible = false;

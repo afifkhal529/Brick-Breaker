@@ -86,13 +86,19 @@
     <None Include="Resources\heartt.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\win effect.wav" />
+    <None Include="Resources\win effect.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Lose.wav" />
+    <None Include="Resources\Lose.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Break.wav" />
+    <None Include="Resources\Break.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

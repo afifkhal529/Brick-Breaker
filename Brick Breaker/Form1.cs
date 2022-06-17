@@ -39,6 +39,8 @@ namespace Brick_Breaker
 
         string gameState = "waiting";
 
+        System.Windows.Media.MediaPlayer winsound = new System.Windows.Media.MediaPlayer();
+
         SolidBrush whiteBrush = new SolidBrush(Color.Honeydew);
         SolidBrush redBrush = new SolidBrush(Color.LightCoral);
         SolidBrush orangeBrush = new SolidBrush(Color.Coral);
@@ -50,7 +52,7 @@ namespace Brick_Breaker
         public Form1()
         {
             InitializeComponent();
-
+            
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)

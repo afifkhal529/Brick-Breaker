@@ -366,7 +366,8 @@ namespace Brick_Breaker
                 e.Graphics.FillRectangle(whiteBrush, hero);
 
                 //draw ball
-                e.Graphics.FillRectangle(whiteBrush, ball);
+                //e.Graphics.FillRectangle(whiteBrush, ball);
+                e.Graphics.DrawImage(Properties.Resources.ball, ball);
 
                 //draw moving brick
                 e.Graphics.FillRectangle(pinkBrush, movingBrick);

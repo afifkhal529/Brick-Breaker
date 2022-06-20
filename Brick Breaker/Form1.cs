@@ -51,6 +51,8 @@ namespace Brick_Breaker
         SoundPlayer losePlayer = new SoundPlayer(Properties.Resources.loseSound);
         SoundPlayer breakPlayer = new SoundPlayer(Properties.Resources.breakSound);
         SoundPlayer errorPlayer = new SoundPlayer(Properties.Resources.errorSound);
+        SoundPlayer hitPlayer = new SoundPlayer(Properties.Resources.hitSound);
+
         public Form1()
         {
             InitializeComponent();
@@ -142,6 +144,7 @@ namespace Brick_Breaker
             //ball intersection with player
             if (hero.IntersectsWith(ball))
             {
+                hitPlayer.Play();
                 if (ballXspeed == 0)
                 {
                     ballXspeed = 2;

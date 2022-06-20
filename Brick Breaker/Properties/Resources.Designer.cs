@@ -101,6 +101,15 @@ namespace Brick_Breaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream hitSound {
+            get {
+                return ResourceManager.GetStream("hitSound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream loseSound {
             get {
                 return ResourceManager.GetStream("loseSound", resourceCulture);

@@ -108,5 +108,10 @@
   <ItemGroup>
     <None Include="Resources\ball_low.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bamboo Hit - Sound Effect %28HD%29.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

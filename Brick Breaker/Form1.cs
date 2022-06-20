@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
-using System.IO;
 
 namespace Brick_Breaker
 {
@@ -18,17 +17,17 @@ namespace Brick_Breaker
         Rectangle ball = new Rectangle(280, 300, 10, 10);
         Rectangle movingBrick = new Rectangle(0, 350, 30, 10);
 
-        int herospeed = 15;
-        int ballXspeed = 0;
-        int ballYspeed = 8;
-        int brickXspeed = 5;
-
         List<Rectangle> brickRow1 = new List<Rectangle>();
         List<Rectangle> brickRow2 = new List<Rectangle>();
         List<Rectangle> brickRow3 = new List<Rectangle>();
         List<Rectangle> brickRow4 = new List<Rectangle>();
         List<Rectangle> brickRow5 = new List<Rectangle>();
         List<Rectangle> brickRow6 = new List<Rectangle>();
+
+        int herospeed = 15;
+        int ballXspeed = 0;
+        int ballYspeed = 8;
+        int brickXspeed = 5;
 
         int lives = 3;
         int score = 0;
@@ -39,8 +38,6 @@ namespace Brick_Breaker
 
         string gameState = "waiting";
 
-        System.Windows.Media.MediaPlayer winsound = new System.Windows.Media.MediaPlayer();
-
         SolidBrush whiteBrush = new SolidBrush(Color.Honeydew);
         SolidBrush redBrush = new SolidBrush(Color.LightCoral);
         SolidBrush orangeBrush = new SolidBrush(Color.Coral);
@@ -49,6 +46,11 @@ namespace Brick_Breaker
         SolidBrush blueBrush = new SolidBrush(Color.MediumTurquoise);
         SolidBrush purpleBrush = new SolidBrush(Color.Thistle);
         SolidBrush pinkBrush = new SolidBrush(Color.PaleVioletRed);
+
+        SoundPlayer winPlayer = new SoundPlayer(Properties.Resources.winSound);
+        SoundPlayer losePlayer = new SoundPlayer(Properties.Resources.loseSound);
+        SoundPlayer breakPlayer = new SoundPlayer(Properties.Resources.breakSound);
+        SoundPlayer errorPlayer = new SoundPlayer(Properties.Resources.errorSound);
         public Form1()
         {
             InitializeComponent();
@@ -126,12 +128,14 @@ namespace Brick_Breaker
             //ball intersection with side walls 
             if (ball.X > this.Width || ball.X < 0)
             {
+                errorPlayer.Play();
                 ballXspeed *= -1;
             }
 
             //ball intersection with top wall
             if (ball.Y < 0)
             {
+                errorPlayer.Play();
                 ballYspeed = -ballYspeed;
             }
 
@@ -163,6 +167,8 @@ namespace Brick_Breaker
             //check for point scored
             if (ball.IntersectsWith(movingBrick))
             {
+                breakPlayer.Play();
+
                 score += 3;
                 scoreLabel.Text = $"{score}";
 
@@ -175,6 +181,8 @@ namespace Brick_Breaker
             {
                 if (ball.IntersectsWith(brickRow1[i]))
                 {
+                    breakPlayer.Play();
+
                     score++;
                     scoreLabel.Text = $"{score}";
 
@@ -188,6 +196,8 @@ namespace Brick_Breaker
             {
                 if (ball.IntersectsWith(brickRow2[i]))
                 {
+                    breakPlayer.Play();
+
                     score++;
                     scoreLabel.Text = $"{score}";
 
@@ -201,6 +211,8 @@ namespace Brick_Breaker
             {
                 if (ball.IntersectsWith(brickRow3[i]))
                 {
+                    breakPlayer.Play();
+
                     score++;
                     scoreLabel.Text = $"{score}";
 
@@ -214,6 +226,8 @@ namespace Brick_Breaker
             {
                 if (ball.IntersectsWith(brickRow4[i]))
                 {
+                    breakPlayer.Play();
+
                     score++;
                     scoreLabel.Text = $"{score}";
 
@@ -227,6 +241,8 @@ namespace Brick_Breaker
             {
                 if (ball.IntersectsWith(brickRow5[i]))
                 {
+                    breakPlayer.Play();
+
                     score++;
                     scoreLabel.Text = $"{score}";
 
@@ -240,6 +256,8 @@ namespace Brick_Breaker
             {
                 if (ball.IntersectsWith(brickRow6[i]))
                 {
+                    breakPlayer.Play();
+
                     score++;
                     scoreLabel.Text = $"{score}";
 
@@ -251,8 +269,18 @@ namespace Brick_Breaker
             }
 
             //Determine when the game is over
-            if (score == 24 || lives == 0)
+            if (score == 24)
             {
+                winPlayer.Play();
+
+                gameTimer.Enabled = false;
+                pictureBox1.Visible = false;
+                gameState = "over";
+            }
+            else if (lives == 0)
+            {
+                losePlayer.Play();
+
                 gameTimer.Enabled = false;
                 pictureBox1.Visible = false;
                 gameState = "over";

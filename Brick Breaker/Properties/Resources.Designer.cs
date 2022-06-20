@@ -61,11 +61,30 @@ namespace Brick_Breaker.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ball {
+            get {
+                object obj = ResourceManager.GetObject("ball", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Break {
+        internal static System.IO.UnmanagedMemoryStream breakSound {
             get {
-                return ResourceManager.GetStream("Break", resourceCulture);
+                return ResourceManager.GetStream("breakSound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream errorSound {
+            get {
+                return ResourceManager.GetStream("errorSound", resourceCulture);
             }
         }
         
@@ -82,18 +101,18 @@ namespace Brick_Breaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Lose {
+        internal static System.IO.UnmanagedMemoryStream loseSound {
             get {
-                return ResourceManager.GetStream("Lose", resourceCulture);
+                return ResourceManager.GetStream("loseSound", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream win {
+        internal static System.IO.UnmanagedMemoryStream winSound {
             get {
-                return ResourceManager.GetStream("win", resourceCulture);
+                return ResourceManager.GetStream("winSound", resourceCulture);
             }
         }
     }
